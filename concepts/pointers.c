@@ -1,6 +1,18 @@
 #include <stdio.h>
 
+typedef struct {
+  int x;
+  int y;
+} point;
+
 void doubleNum(int *value) { *value *= 2; }
+
+void draw(int x, int y) { printf("Drawing in coords: [%d,%d]\n", x, y); }
+
+void move(point *p) {
+  p->x++;
+  p->y++;
+}
 
 int main() {
   /**
@@ -88,8 +100,38 @@ int main() {
    * without copying it.
    */
   doubleNum(pointer_to_variable);
-
   printf("Value of variable is %d\n", variable);
+
+  // You can also pass the reference to a variable directly with the & syntax
+  doubleNum(&variable);
+  printf("Value of variable is %d\n", variable);
+
+  /**
+   * (See explanation of structures themselves in ./data-types.c)
+   *
+   * Pointer to structures can also be passed to a variable. Because this is so
+   * common, there's a special syntax for accessing a struct pointer's members,
+   * so instead of:
+   *
+   * void move(point * p) {
+   *  (*p).x++;
+   *  (*p).y++;
+   * }
+   *
+   * we can use:
+   *
+   * void move(point * p) {
+   *  p->x++;
+   *  p->y++;
+   * }
+   */
+  point p;
+  p.x = 6;
+  p.y = 26;
+
+  draw(p.x, p.y);
+  move(&p);
+  draw(p.x, p.y);
 
   return 0;
 }

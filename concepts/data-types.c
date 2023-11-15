@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void draw(int x, int y) { printf("Drawing in coords: [%d,%d]", x, y); }
+void draw(int x, int y) { printf("Drawing in coords: [%d,%d]\n", x, y); }
 
 int main() {
 
